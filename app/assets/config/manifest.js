@@ -3,3 +3,5 @@
 //= link homes.css
 //= link application.js
 //= link_tree ../../javascript/controllers .js
+//= link_tree ../images
+//= link application.css
