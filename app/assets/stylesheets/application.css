@@ -35,6 +35,11 @@ a:hover {
   text-decoration: none;
 }
 
-body {
-  background: red !important;
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  color: aqua!important;
+  text-decoration:  underline;
 }
