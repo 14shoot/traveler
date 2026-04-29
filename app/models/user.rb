@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
 
   has_one_attached :profile_image
+  validates :name, presence: true
 
   def follow(user_id)
     follower.create(followed_id: user_id)
@@ -26,3 +27,4 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 end
+
