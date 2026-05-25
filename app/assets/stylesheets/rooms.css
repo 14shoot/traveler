@@ -1,0 +1,27 @@
+.message {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-message {
+  align-items: flex-end;
+}
+
+.other-message {
+  align-items: flex-start;
+}
+
+.message-content {
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.my-message .message-content {
+  background-color: #aee1ff;
+}
+
+.other-message .message-content {
+  background-color: #eee;
+}

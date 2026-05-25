@@ -3,12 +3,33 @@ class UsersController < ApplicationController
     @users =  User.page(params[:page]).per(5).reverse_order
   end
 
-  def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(8).reverse_order
-    @following_users = @user.following_user
-    @follower_users = @user.follower_user
+def show
+  @user = User.find(params[:id])
+  @posts = @user.posts.page(params[:page]).per(5)
+
+  @following_users = @user.following_user
+  @follower_users = @user.follower_user
+
+  @isRoom = false
+
+  if current_user != @user
+    current_user_entries = current_user.entries
+    user_entries = @user.entries
+
+    current_user_entries.each do |cu|
+      user_entries.each do |u|
+        if cu.room_id == u.room_id
+          @isRoom = true
+          @roomId = cu.room_id
+        end
+      end
+    end
+    if @isRoom != true
+      @room = Room.new
+      @entry = Entry.new
+    end
   end
+end
 
   def edit
     @user = User.find(params[:id])

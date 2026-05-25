@@ -1,0 +1,35 @@
+<% @entries.each do |e| %>
+  <% if @myUserId != e.user.id %>
+    <h2><%= e.user.name %>さんとのトークルーム</h2>
+  <% end %>
+<% end %>
+
+<% if @messages.present? %>
+  <% @messages.each do |m| %>
+
+  <% if @myUserId == m.user.id %>
+    <div class="message my-message">
+      <p class="message-user">自分</p>
+      <p class="message-content"><%= m.message %></p>
+    </div>
+  <% else %>
+    <div class="message other-message">
+      <p class="message-user"><%= m.user.name %></p>
+      <p class="message-content"><%= m.message %></p>
+    </div>
+  <% end %>
+<% end %>
+<% end %>
+
+<%= form_with model: @message, local: true do |f| %>
+
+  <%= f.text_field :message,
+      placeholder: "メッセージを入力してください",
+      size: 50,
+      class: "form-text-field" %>
+
+  <%= f.hidden_field :room_id, value: @room.id %>
+
+  <%= f.submit "投稿", class: "form-submit" %>
+
+<% end %>

@@ -23,6 +23,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
+    unless LookCount.find_by(user_id: current_user.id, post_id: @post.id)
+      current_user.look_counts.create(post_id: @post.id)
+     end
   end
 
   def edit
